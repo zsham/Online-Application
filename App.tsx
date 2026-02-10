@@ -6,6 +6,8 @@ import ApplicationForm from './components/ApplicationForm';
 import SuccessScreen from './components/SuccessScreen';
 import AdminDashboard from './components/AdminDashboard';
 import AdminLogin from './components/AdminLogin';
+import SmartAssistant from './components/SmartAssistant';
+import { GoogleGenAI } from "@google/genai";
 
 const App: React.FC = () => {
   const [step, setStep] = useState<AppStep>(AppStep.VALIDATION);
@@ -42,7 +44,9 @@ const App: React.FC = () => {
         sponsorType: '5',
         sponsorName: 'SELF',
         paymentMethod: '1',
-        workExperience: [],
+        workExperience: [
+          { position: 'Software Engineer', startYear: '2018', endYear: '2023', organization: 'TechCorp' }
+        ],
         referees: [],
         declarationVerified: true
       }
@@ -156,6 +160,9 @@ const App: React.FC = () => {
           <p>© {new Date().getFullYear()} University Admission System. All rights reserved.</p>
         </div>
       </footer>
+
+      {/* Floating AI Assistant for Students */}
+      {!isAdminView && step !== AppStep.SUCCESS && <SmartAssistant />}
     </div>
   );
 };

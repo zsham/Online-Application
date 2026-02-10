@@ -13,7 +13,11 @@ interface ApplicationFormProps {
 }
 
 const ApplicationForm: React.FC<ApplicationFormProps> = ({ initialIc, onSubmit, onCancel }) => {
+  // Fix: Initialize formData with all required fields of ApplicationFormData
   const [formData, setFormData] = useState<ApplicationFormData>({
+    id: '',
+    status: 'PENDING',
+    submissionDate: new Date().toISOString(),
     program1: '',
     program2: '',
     studyMode: 'FULL TIME',
